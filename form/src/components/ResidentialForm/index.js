@@ -1,122 +1,142 @@
-import React from 'react';
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
-import Step4 from './Step4';
+import React from "react";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
+import Calculated from "./Calculated";
 
 class MasterForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       currentStep: 1,
-      email:  '',
-      username: '',
-      password: '', 
-    }
+      input: {
+        bedrooms: "",
+        bathrooms: "",
+        sqfeet: "",
+        additional: {}
+      },
+      estimate: {
+        total: "$300"
+      }
+    };
   }
 
   handleChange = event => {
-    const {name, value} = event.target
+    const { name, value } = event.target;
     this.setState({
       [name]: value
-    })    
-  }
-   
+    });
+  };
+
   handleSubmit = event => {
-    event.preventDefault()
-    const { email, username, password } = this.state
-    alert(`Your registration detail: \n 
-           Email: ${email} \n 
-           Username: ${username} \n
-           Password: ${password}`)
-  }
-  
+    event.preventDefault();
+    const { input } = this.state;
+    alert(`Thank you ${this.state.input.name} Your Appointment has been scheduled.`);
+  };
+
   _next = () => {
-    let currentStep = this.state.currentStep
-    currentStep = currentStep >= 3? 4: currentStep + 1
+    let currentStep = this.state.currentStep;
+    currentStep = currentStep >= 3 ? 4 : currentStep + 1;
     this.setState({
       currentStep: currentStep
-    })
-  }
-    
+    });
+  };
+
   _prev = () => {
-    let currentStep = this.state.currentStep
-    currentStep = currentStep <= 1? 1: currentStep - 1
+    let currentStep = this.state.currentStep;
+    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
     this.setState({
       currentStep: currentStep
-    })
+    });
+  };
+
+  /*
+   * the functions for our button
+   */
+  previousButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep !== 1) {
+      return (
+        <button
+          className="btn btn-secondary ui secondary button"
+          type="button"
+          onClick={this._prev}
+        >
+          Previous
+        </button>
+      );
+    }
+    return null;
   }
 
-/*
-* the functions for our button
-*/
-previousButton() {
-  let currentStep = this.state.currentStep;
-  if(currentStep !==1){
-    return (
-      <button 
-        className="btn btn-secondary" 
-        type="button" onClick={this._prev}>
-      Previous
-      </button>
-    )
+  nextButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep < 4) {
+      return (
+        <button
+          className="btn btn-primary ui primary button"
+          type="button"
+          onClick={this._next}
+        >
+          Next
+        </button>
+      );
+    }
+    return null;
   }
-  return null;
-}
 
-nextButton(){
-  let currentStep = this.state.currentStep;
-  if(currentStep <4){
-    return (
-      <button 
-        className="btn btn-primary float-right" 
-        type="button" onClick={this._next}>
-      Next
-      </button>        
-    )
+  submitButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep === 4) {
+      return (
+        <button
+          className="btn btn-primary ui green button"
+          type="button"
+          onClick={this.handleSubmit}
+        >
+          submit
+        </button>
+      );
+    }
+    return null;
   }
-  return null;
-}
-  
-  render() {    
+
+  render() {
     return (
       <React.Fragment>
-      <h1>Book Your Clean</h1>
-      <p>Step {this.state.currentStep} </p> 
+        <h1>Book Your Clean</h1>
+        <Calculated estimate={this.state.estimate} />
+        <p>Step {this.state.currentStep} </p>
 
-      <form onSubmit={this.handleSubmit}>
-      {/* 
-        render the form steps and pass required props in
-      */}
-        <Step1 
-          currentStep={this.state.currentStep} 
-          handleChange={this.handleChange}
-          email={this.state.email}
-        />
-        <Step2 
-          currentStep={this.state.currentStep} 
-          handleChange={this.handleChange}
-          username={this.state.username}
-        />
-        <Step3 
-          currentStep={this.state.currentStep} 
-          handleChange={this.handleChange}
-          password={this.state.password}
-        />
-        <Step4 
-          currentStep={this.state.currentStep} 
-          handleChange={this.handleChange}
-          password={this.state.password}
-        />
-        {this.previousButton()}
-      
-        {this.nextButton()}
-
-      </form>
+        <form onSubmit={this.handleSubmit}>
+          <Step1
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            input={this.state.input}
+          />
+          <Step2
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            input={this.state.input}
+          />
+          <Step3
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            input={this.state.input}
+          />
+          <Step4
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            estimate={this.state.estimate}
+          />
+          {this.previousButton()}
+          {this.nextButton()}
+          {this.submitButton()}
+        </form>
       </React.Fragment>
     );
   }
 }
-
 
 export default MasterForm;
