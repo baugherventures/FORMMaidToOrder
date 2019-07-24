@@ -1,5 +1,5 @@
 import React from 'react';
-import Residential from './components/ResidentialForm'
+import Residential from './components/ResidentialForm/'
 
 function App() {
   return (
