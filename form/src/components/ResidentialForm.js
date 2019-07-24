@@ -20,7 +20,7 @@ function Residential() {
         <i aria-hidden="true" class="dropdown icon"></i>
         <div class="menu transition">
           <div
-            style="pointer-events:all"
+            // style="pointer-events:all"
             role="option"
             aria-checked="false"
             aria-selected="true"
@@ -29,7 +29,7 @@ function Residential() {
             <span class="text">Male</span>
           </div>
           <div
-            style="pointer-events:all"
+            // style="pointer-events:all"
             role="option"
             aria-checked="false"
             aria-selected="false"
@@ -38,7 +38,7 @@ function Residential() {
             <span class="text">Female</span>
           </div>
           <div
-            style="pointer-events:all"
+            // style="pointer-events:all"
             role="option"
             aria-checked="false"
             aria-selected="false"
