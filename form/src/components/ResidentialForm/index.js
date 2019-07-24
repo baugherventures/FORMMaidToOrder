@@ -2,6 +2,7 @@ import React from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Step4 from './Step4';
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class MasterForm extends React.Component {
   
   _next = () => {
     let currentStep = this.state.currentStep
-    currentStep = currentStep >= 2? 3: currentStep + 1
+    currentStep = currentStep >= 3? 4: currentStep + 1
     this.setState({
       currentStep: currentStep
     })
@@ -65,7 +66,7 @@ previousButton() {
 
 nextButton(){
   let currentStep = this.state.currentStep;
-  if(currentStep <3){
+  if(currentStep <4){
     return (
       <button 
         className="btn btn-primary float-right" 
@@ -102,7 +103,13 @@ nextButton(){
           handleChange={this.handleChange}
           password={this.state.password}
         />
+        <Step4 
+          currentStep={this.state.currentStep} 
+          handleChange={this.handleChange}
+          password={this.state.password}
+        />
         {this.previousButton()}
+      
         {this.nextButton()}
 
       </form>
