@@ -8,7 +8,7 @@ class Step4 extends React.Component {
       // The markup for the Step 4 UI
       return(
           <>
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="Payment">Payment</label>
           <input
             className="form-control"

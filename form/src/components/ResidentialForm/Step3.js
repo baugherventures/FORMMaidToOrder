@@ -8,7 +8,7 @@ class Step3 extends React.Component {
       // The markup for the Step 3 UI
       return(
           <>
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="access">How will we access the residence? ie. Keys, Garage Code, Access Code, Someone will be home...</label>
           <input
             className="form-control"
@@ -21,7 +21,7 @@ class Step3 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="arrival">Arrival Windows are as follows: Morning 8-10am, Mid-Day 11am-1pm, Afternoon 2-4pm</label>
           <input
             className="form-control"
@@ -34,7 +34,7 @@ class Step3 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="date">Date</label>
           <input
             className="form-control"
@@ -47,7 +47,7 @@ class Step3 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="frequency">Cleaning Frequency</label>
           <input
             className="form-control"
@@ -60,7 +60,7 @@ class Step3 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="additional">Additional Instructions</label>
           <input
             className="form-control"

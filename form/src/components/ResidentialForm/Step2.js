@@ -8,7 +8,7 @@ class Step2 extends React.Component {
       // The markup for the Step 2 UI
       return(
           <>
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="name">Name</label>
           <input
             className="form-control"
@@ -16,12 +16,12 @@ class Step2 extends React.Component {
             name="name"
             type="text"
             placeholder="Enter name"
-            value={this.props.name} // Prop: The name input data
+            value={this.props.input.name} // Prop: The name input data
             onChange={this.props.handleChange} // Prop: Puts data into state
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="phone">Phone</label>
           <input
             className="form-control"
@@ -34,7 +34,7 @@ class Step2 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="email">Email address</label>
           <input
             className="form-control"
@@ -47,7 +47,7 @@ class Step2 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="address">Service Address</label>
           <input
             className="form-control"
@@ -60,7 +60,7 @@ class Step2 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="city">City</label>
           <input
             className="form-control"
@@ -73,7 +73,7 @@ class Step2 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="state">State</label>
           <input
             className="form-control"
@@ -86,7 +86,7 @@ class Step2 extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group ui input">
           <label htmlFor="zip">Zip/Postal Code</label>
           <input
             className="form-control"
