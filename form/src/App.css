@@ -1,7 +1,9 @@
 .App {
   max-width: 800px;
   margin: 0 auto;
+  padding: 20px 10px;
   text-align: center;
+  box-shadow: 0 0 15px 0 #C0C0C0;
 }
 
 .clean-overview-prop {

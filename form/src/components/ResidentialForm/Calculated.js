@@ -1,7 +1,6 @@
 import React from "react";
 
 const Calculated = props => {
-  console.log("calc stuff", props);
   return (
     <>
       <div className="estimation">

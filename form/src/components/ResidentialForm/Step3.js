@@ -1,14 +1,15 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
+import Calendar from './calendar';
 
 const Step3 = props => {
-  console.log(props)
   
     const arrivalOptions = [
       { key: 1, text: "Morning 8-10am", value: 1 },
       { key: 2, text: "Mid-Day 11am-1pm", value: 2 },
       { key: 3, text: "Afternoon 2-4pm", value: 3 }
     ];
+
     if (props.currentStep !== 3) {
       // Prop: The current step
       return null;
@@ -27,7 +28,7 @@ const Step3 = props => {
             type="text"
             placeholder="ie. Keys, Garage Code,
             Access Code, Someone will be home..."
-            value={props.access} // Prop: The access input data
+            value={props.accessInformation} // Prop: The access input data
             onChange={props.handleChange} // Prop: Puts data into access
           />
         </div>
@@ -46,33 +47,25 @@ const Step3 = props => {
             id="arrivals"
             name="arrival"
             type="array"
-            defaultValue={props.arrival} // Prop: The arrival input data
+            defaultValue={props.arrivalWindow} // Prop: The arrival input data
             onChange={props.onChange} // Prop: Puts data into state
           />
         </div>
 
         <div className="form-group ui input cust-input-field">
-          <label htmlFor="date">Date:&nbsp;</label>
-          <input
-            className="form-control"
-            id="date"
-            name="date"
-            type="text"
-            placeholder="Enter date"
-            value={props.date} // Prop: The date input data
-            onChange={props.handleChange} // Prop: Puts data into date
-          />
+          <label htmlFor="date">Select the Date:&nbsp;</label>
+          <Calendar/>
         </div>
 
         <div className="form-group ui input cust-input-field">
           <label htmlFor="additional">Additional Instructions:&nbsp;</label>
           <input
             className="form-control"
-            id="additional"
+            id="Additional Instructions"
             name="additional"
             type="text"
             placeholder="Enter additional"
-            value={props.additional} // Prop: The additional input data
+            value={props.additionalInstructions} // Prop: The additional input data
             onChange={props.handleChange} // Prop: Puts data into additional
           />
         </div>

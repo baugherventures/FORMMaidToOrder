@@ -4,6 +4,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Calculated from "./Calculated";
+import moment from 'moment';
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -11,22 +12,82 @@ class MasterForm extends React.Component {
     this.state = {
       complete: false,
       currentStep: 1,
-      name: null,
+
       bedrooms: 1,
       bathrooms: 1,
       sqfeet: 1000,
       pets: 0,
       additional: 0,
+      frequency: 1,
+
+      name: "",
+      phone:"",
+      email:"",
+      address:"",
+      city:"",
+      state:"",
+      zip:"",
+      
       estimate: 0,
-      frequency: 1
+      
+      month: moment(),
+      selected: moment().startOf('day')
     };
   }
 
+  render() {
+    console.log("What is state?",this.state)
+    return (
+      <React.Fragment>
+        <h1>Book Your Clean</h1>
+        <Calculated className="calculated-window" calc={this.state} />
+        <h3>Step {this.state.currentStep} </h3>
+
+        <form onSubmit={this.handleSubmit}>
+          <Step1
+            className="step-window"
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            onChange={this.onChange}
+            input={this.state}
+          />
+          <Step2
+            className="step-window"
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            input={this.state}
+          />
+          <Step3
+            className="step-window"
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            input={this.state}
+          />
+          <Step4
+            className="step-window"
+            currentStep={this.state.currentStep}
+            handleChange={this.handleChange}
+            estimate={this.state}
+          />
+          {this.previousButton()}
+          {this.nextButton()}
+          {this.submitButton()}
+          {this.paymentButton()}
+        </form>
+      </React.Fragment>
+    );
+  }
+  
+  /**
+   * background functions
+   */
   onChange = (e, data) => {
     const { name } = data;
     const { selected } = { selected: data.value };
     this.setState({ [name]: selected });
-    this.estimateCost();
+    if (this.state.currentStep === 1){
+      this.estimateCost()
+    }
   };
 
   handleChange = event => {
@@ -34,22 +95,10 @@ class MasterForm extends React.Component {
     this.setState({
       [name]: value
     });
-    this.estimateCost();
   };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    // const name = this.state.name == null?"...":this.state.name;
-    // const confirm1 = this.state.estimate <= 50 ?"Oh No!" : "Thank you";
-    // const confirm2 = this.state.estimate <= 50 ?"There Seems to be a problem with the information you selected":"Your Appointment has been scheduled.";
-    // alert(`${confirm1} ${name} ${confirm2}`);
-
-    // this.state.name == null?this._prev():this._next();
-    this._next();
-  };
-
 
   estimateCost = e => {
+    console.log("Someone estimated some stuff")
     setTimeout(
       function() {
         const bedrooms = this.state.bedrooms;
@@ -77,6 +126,19 @@ class MasterForm extends React.Component {
       }.bind(this),
       1000
     );
+  };
+/**
+ * On click event functions
+ */
+  handleSubmit = event => {
+    event.preventDefault();
+    // const name = this.state.name == null?"...":this.state.name;
+    // const confirm1 = this.state.estimate <= 50 ?"Oh No!" : "Thank you";
+    // const confirm2 = this.state.estimate <= 50 ?"There Seems to be a problem with the information you selected":"Your Appointment has been scheduled.";
+    // alert(`${confirm1} ${name} ${confirm2}`);
+
+    // this.state.name == null?this._prev():this._next();
+    this._next();
   };
 
   async payment() {
@@ -106,7 +168,7 @@ class MasterForm extends React.Component {
   };
 
   /*
-   * the functions for our button
+   * Button Functions
    */
   previousButton() {
     let currentStep = this.state.currentStep;
@@ -171,48 +233,11 @@ class MasterForm extends React.Component {
     }
     return null;
   }
+  /**
+   * Calendar functions
+   */
 
-  render() {
-    return (
-      <React.Fragment>
-        <h1>Book Your Clean</h1>
-        <Calculated className="calculated-window" calc={this.state} />
-        <h3>Step {this.state.currentStep} </h3>
 
-        <form onSubmit={this.handleSubmit}>
-          <Step1
-            className="step-window"
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            onChange={this.onChange}
-            input={this.state}
-          />
-          <Step2
-            className="step-window"
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            input={this.state}
-          />
-          <Step3
-            className="step-window"
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            input={this.state}
-          />
-          <Step4
-            className="step-window"
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            estimate={this.state}
-          />
-          {this.previousButton()}
-          {this.nextButton()}
-          {this.submitButton()}
-          {this.paymentButton()}
-        </form>
-      </React.Fragment>
-    );
-  }
 }
 
 export default MasterForm;

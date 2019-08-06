@@ -2,8 +2,6 @@ import React from "react";
 import { Dropdown } from "semantic-ui-react";
 
 const Step1 = props => {
-  console.log(props);
-
   const frequencyOptions = [
     { key: 1, text: "Weekly", value: 0 },
     { key: 2, text: "Bi-Weekly", value: 1 },
@@ -65,7 +63,7 @@ const Step1 = props => {
           name="frequency"
           type="text"
           value={props.frequency} // Prop: The bedroom input data
-          onChange={props.onChange} // Prop: Puts data into state
+          onChange={props.onChange} // Prop: Puts data into state // Prop:trigers estmate calc
         />
       </div>
 
@@ -141,7 +139,7 @@ const Step1 = props => {
           id="additionals"
           name="additional"
           type="array"
-          defaultValue={props.additional} // Prop: The additional input data
+          defaultValue={props.additionalOptions} // Prop: The additional input data
           onChange={props.onChange} // Prop: Puts data into state
         />
       </div>

@@ -1,10 +1,11 @@
 import React from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import CheckoutForm from "./Step4-stripe";
+// import stripeBtn from "./Step4-stripe";
 
-class Step4 extends React.Component {
-  render() {
-    if (this.props.currentStep !== 4) {
+const Step4 = props => {
+  
+    if (props.currentStep !== 4) {
       // Prop: The current step
       return null;
     }
@@ -21,7 +22,7 @@ class Step4 extends React.Component {
       </StripeProvider>
       </>
     );
-  }
+  
 }
 
 export default Step4;
